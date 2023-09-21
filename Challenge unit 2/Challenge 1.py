@@ -1,47 +1,32 @@
 class BankAccount:
-    def __init__(self,acc_no,acc_name,acc_balance):
-        self.__acc_no = acc_no
-        self.__acc_name = acc_name
-        self.__acc_balance = acc_balance
-    
-    def deposit(self,amt):
-        if amt > 0:
-            self.__acc_balance += amt
-            print(f"The sum of rupees {amt} is deposited .")
+    def __init__(self, account_number, account_holder_name, initial_balance=0):
+        self.__account_number = account_number
+        self.__account_holder_name = account_holder_name
+        self.__account_balance = initial_balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__account_balance += amount
+            print(f"Deposited ${amount}. New balance: ${self.__account_balance}")
         else:
-            print("Invalid amount !") 
+            print("Invalid deposit amount. Amount must be greater than zero.")
 
-    def withdrawl(self,amt):
-        if 0<amt<=self.__acc_balance:
-            self.__acc_balance -= amt
-            print(f"The sum of rupees {amt} is withdrawn .")
+    def withdraw(self, amount):
+        if 0 < amount <= self.__account_balance:
+            self.__account_balance -= amount
+            print(f"Withdrew ${amount}. New balance: ${self.__account_balance}")
         else:
-            print("Invalid amount !")
+            print("Invalid withdrawal amount or insufficient funds.")
 
-    def display(self):
-        print(f"Account number      : {self.__acc_no}")
-        print(f"Account holder name : {self.__acc_name}")
-        print(f"Balance             : {self.__acc_balance}")
+    def display_balance(self):
+        print(f"Account Balance for {self.__account_holder_name}: ${self.__account_balance}")
 
 
-def main():
 
-    account = BankAccount(1234567890,'Dhanush',100000)
-    choice = input("Enter your choice (deposit/withdraw/display) : ")
-    if choice == 'deposit':
-         amt = float(input("Enter amount to deposit : "))
-         account.deposit(amt)
-         account.display()
-    elif choice == 'withdraw':
-         amt = float(input("Enter amount to withdraw : "))
-         account.withdrawl(amt)
-         account.display()
-    elif choice == 'display':
-         account.display()
-    else:
-         print(f"Wrong choice : {choice} \n")
-         print("\n\t\t Available Choices \t\t\n")
-         print("\n\t\t _________________ \t\t\n")
-         print("\n deposit \n withdraw \n display \n")
-         print("\n Note : choices are case sensitive !")
-main()
+account1 = BankAccount("12345", "John Doe", 1000)
+
+
+account1.display_balance()
+account1.deposit(500)
+account1.withdraw(200)
+account1.display_balance()
